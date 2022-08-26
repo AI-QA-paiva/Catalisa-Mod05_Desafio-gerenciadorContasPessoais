@@ -35,14 +35,19 @@ public class ContasAPagarService {
         return contasAPagarRepository.save(contasAPagarModel);
     }
 
-    public ContasAPagarModel alteracaoConta(ContasAPagarModel contasAPagarModel, Long idConta){
-        contasAPagarModel.getIdConta();
-        contasAPagarModel.getStatus();
+    public ContasAPagarModel alteracaoConta(ContasAPagarModel contasAPagarModel){
 
-        if(contasAPagarModel.getStatus().equals(Status.PAGO)){
-            contasAPagarModel.setDataDePagamento(LocalDateTime.now());
+        ContasAPagarModel contasAPagarModelEncontrado = contasAPagarRepository.findById(contasAPagarModel.getIdConta()).orElse(null);
+        if(contasAPagarModelEncontrado==null){
+            return null;
         }
-        return contasAPagarRepository.save(contasAPagarModel);
+
+        contasAPagarModelEncontrado.setStatus(contasAPagarModel.getStatus());
+
+        if(contasAPagarModelEncontrado.getStatus().equals(Status.PAGO)){
+            contasAPagarModelEncontrado.setDataDePagamento(LocalDateTime.now());
+        }
+        return contasAPagarRepository.save(contasAPagarModelEncontrado);
     }
 
     public void deletarConta(Long idConta){

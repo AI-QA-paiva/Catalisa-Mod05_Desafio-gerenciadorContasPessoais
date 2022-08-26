@@ -32,8 +32,9 @@ public class ContasAPagarController {
     }
 
    @PutMapping(path = "contas/{idConta}")
-   public ContasAPagarModel alterarConta(@RequestBody ContasAPagarModel alterando, @PathVariable Long idConta){
-        return contasAPagarService.alteracaoConta(alterando, idConta);
+   public ContasAPagarModel alterarConta(@RequestBody ContasAPagarModel alterando,@PathVariable Long idConta){//, @PathVariable Long idConta
+        alterando.setIdConta(idConta);
+        return contasAPagarService.alteracaoConta(alterando);//o, idConta
    }
 
     @DeleteMapping(path = "/contas/{idConta}")

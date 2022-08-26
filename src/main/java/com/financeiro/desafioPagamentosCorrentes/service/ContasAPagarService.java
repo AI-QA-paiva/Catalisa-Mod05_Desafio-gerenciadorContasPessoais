@@ -27,31 +27,28 @@ public class ContasAPagarService {
     public ContasAPagarModel cadastrarContas(ContasAPagarModel contasAPagarModel){
         Boolean dataDeHoje = LocalDate.now().isAfter(contasAPagarModel.getDataDeVencimento());
 
-        contasAPagarModel.getIdConta();
-        contasAPagarModel.getNome();
-        contasAPagarModel.getValor();
-        contasAPagarModel.getTipo();
-        contasAPagarModel.getDataDeVencimento();
-
         if(Boolean.FALSE.equals(dataDeHoje)){
-            contasAPagarModel.setStatus(Status.VENCIDA);
-        }else{
             contasAPagarModel.setStatus(Status.AGUARDANDO);
+        }else{
+            contasAPagarModel.setStatus(Status.VENCIDA);
         }
         return contasAPagarRepository.save(contasAPagarModel);
     }
 
-    public ContasAPagarModel alterarConta(ContasAPagarModel contasAPagarModel, Long idConta){
-        //LocalDateTime dataDeHoje = LocalDateTime.now();
+    public ContasAPagarModel alteracaoConta(ContasAPagarModel contasAPagarModel, Long idConta){
         contasAPagarModel.getIdConta();
-        contasAPagarModel.getTipo();
-        //contasAPagarModel.setDataDePagamento();
+        contasAPagarModel.getStatus();
 
-        //contasAPagarModel.getNomeConta();
-        //contasAPagarModel.getValorConta();
-        //contasAPagarModel.getDataDeVencimento();
-
+        if(contasAPagarModel.getStatus().equals(Status.PAGO)){
+            contasAPagarModel.setDataDePagamento(LocalDateTime.now());
+        }
         return contasAPagarRepository.save(contasAPagarModel);
     }
+
+    public void deletarConta(Long idConta){
+        contasAPagarRepository.deleteById(idConta);
+    }
+
+
 
 }

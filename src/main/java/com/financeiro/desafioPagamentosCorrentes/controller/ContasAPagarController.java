@@ -3,6 +3,8 @@ package com.financeiro.desafioPagamentosCorrentes.controller;
 import com.financeiro.desafioPagamentosCorrentes.model.ContasAPagarModel;
 import com.financeiro.desafioPagamentosCorrentes.service.ContasAPagarService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -24,8 +26,19 @@ public class ContasAPagarController {
     }
 
     @PostMapping(path = "/contas")
-    public List<ContasAPagarModel> cadastrarConta(@RequestBody ContasAPagarModel cadastrando){
-        return null;
+    public ResponseEntity<ContasAPagarModel> cadastrarConta(@RequestBody ContasAPagarModel cadastrando){
+        ContasAPagarModel conta = contasAPagarService.cadastrarContas(cadastrando);
+        return new ResponseEntity<>(conta, HttpStatus.CREATED);
+    }
+
+   @PutMapping(path = "contas/{idConta}")
+   public ContasAPagarModel alterarConta(@RequestBody ContasAPagarModel alterando, @PathVariable Long idConta){
+        return contasAPagarService.alteracaoConta(alterando, idConta);
+   }
+
+    @DeleteMapping(path = "/contas/{idConta}")
+    public void deletarConta(@PathVariable Long idConta){
+        contasAPagarService.deletarConta(idConta);
     }
 
 

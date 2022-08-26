@@ -21,15 +21,15 @@ public class ContasAPagarModel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idConta;
 
-    @Column(name ="Perfil_da_despesa")
-    @Enumerated(EnumType.STRING)
-    private Tipo tipo;
-
     @Column(length = 30, nullable = false)
     private String nome;
 
     @Column(length = 10, nullable = false)
     private Double valor;
+
+    @Column(name ="Perfil_da_despesa")
+    @Enumerated(EnumType.STRING)
+    private Tipo tipo;
 
     @Column(length = 15, nullable = false)
     private LocalDate dataDeVencimento;

@@ -16,13 +16,13 @@ public class ContasAPagarController {
     private ContasAPagarService contasAPagarService;
 
     @GetMapping(path = "/contas")
-    public List<ContasAPagarModel> buscarTodasAsContas(){
-        return contasAPagarService.buscarAsContas();
+    public ResponseEntity<List<ContasAPagarModel>> buscarTodasAsContas(){
+        return ResponseEntity.ok(contasAPagarService.buscarAsContas());
     }
 
     @GetMapping(path = "/contas/{idConta}")
-    public Optional<ContasAPagarModel> buscarContaEspecifica(@PathVariable Long codigo){
-        return contasAPagarService.buscarContaExata(codigo);
+    public ResponseEntity<Optional<ContasAPagarModel>> buscarContaEspecifica(@PathVariable Long codigo){
+        return ResponseEntity.ok(contasAPagarService.buscarContaExata(codigo));
     }
 
     @PostMapping(path = "/contas")
@@ -32,9 +32,9 @@ public class ContasAPagarController {
     }
 
    @PutMapping(path = "contas/{idConta}")
-   public ContasAPagarModel alterarConta(@RequestBody ContasAPagarModel alterando,@PathVariable Long idConta){//, @PathVariable Long idConta
+   public ResponseEntity <ContasAPagarModel> alterarConta(@RequestBody ContasAPagarModel alterando,@PathVariable Long idConta){//, @PathVariable Long idConta
         alterando.setIdConta(idConta);
-        return contasAPagarService.alteracaoConta(alterando);//o, idConta
+        return ResponseEntity.ok(contasAPagarService.alteracaoConta(alterando));//o, idConta
    }
 
     @DeleteMapping(path = "/contas/{idConta}")

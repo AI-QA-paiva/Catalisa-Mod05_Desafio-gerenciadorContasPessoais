@@ -22,7 +22,7 @@ public class ContasAPagarController {
         return ResponseEntity.ok(contasAPagarService.buscarAsContas());
     }
 
-    @GetMapping(path = "/contas/{idConta}")
+    @GetMapping(path = "/contas/{id}")
     public ResponseEntity<Optional<ContasAPagarModel>> buscarContaEspecifica(@PathVariable Long id){
         return ResponseEntity.ok(contasAPagarService.buscarContaExata(id));
     }
@@ -52,6 +52,7 @@ public class ContasAPagarController {
     @DeleteMapping(path = "/contas/{idConta}")
     public void deletarConta(@PathVariable Long idConta){
         contasAPagarService.deletarConta(idConta);
+
     }
 
 

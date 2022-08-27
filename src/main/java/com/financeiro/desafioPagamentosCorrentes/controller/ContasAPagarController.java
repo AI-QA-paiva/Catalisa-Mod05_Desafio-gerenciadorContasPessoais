@@ -54,5 +54,4 @@ public class ContasAPagarController {
         contasAPagarService.deletarConta(idConta);
     }
 
-
 }

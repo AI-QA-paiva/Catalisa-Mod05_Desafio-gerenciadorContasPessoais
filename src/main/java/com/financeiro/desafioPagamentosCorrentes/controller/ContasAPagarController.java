@@ -23,16 +23,16 @@ public class ContasAPagarController {
     }
 
     @GetMapping(path = "/contas/{idConta}")
-    public ResponseEntity<Optional<ContasAPagarModel>> buscarContaEspecifica(@PathVariable Long codigo){
-        return ResponseEntity.ok(contasAPagarService.buscarContaExata(codigo));
+    public ResponseEntity<Optional<ContasAPagarModel>> buscarContaEspecifica(@PathVariable Long id){
+        return ResponseEntity.ok(contasAPagarService.buscarContaExata(id));
     }
 
-    @GetMapping(path = "/contas/forma/status")
+    @GetMapping(path = "/contas/status/{status}")
     public ResponseEntity<List<ContasAPagarModel>> buscarTodasAsContasPorStatus(@PathVariable Status status){
         return ResponseEntity.ok(contasAPagarService.buscarContasPorStatus(status));
     }
 
-    @GetMapping(path = "/contas/forma/tipo")
+    @GetMapping(path = "/contas/tipo/{tipo}")
     public ResponseEntity<List<ContasAPagarModel>> buscarTodasAsContasPorTipo(@PathVariable Tipo tipo){
         return ResponseEntity.ok(contasAPagarService.buscarContasPorTipo(tipo));
     }

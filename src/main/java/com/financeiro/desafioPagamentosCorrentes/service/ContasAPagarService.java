@@ -21,8 +21,8 @@ public class ContasAPagarService {
         return contasAPagarRepository.findAll();
     }
 
-    public Optional<ContasAPagarModel> buscarContaExata(Long codigo){
-        return contasAPagarRepository.findById(codigo);
+    public Optional<ContasAPagarModel> buscarContaExata(Long idConta){
+        return contasAPagarRepository.findById(idConta);
     }
 
     public List<ContasAPagarModel> buscarContasPorStatus(Status status){

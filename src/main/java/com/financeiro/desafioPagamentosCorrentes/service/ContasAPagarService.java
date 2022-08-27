@@ -1,5 +1,6 @@
 package com.financeiro.desafioPagamentosCorrentes.service;
 
+import com.financeiro.desafioPagamentosCorrentes.enums.Tipo;
 import com.financeiro.desafioPagamentosCorrentes.model.ContasAPagarModel;
 import com.financeiro.desafioPagamentosCorrentes.enums.Status;
 import com.financeiro.desafioPagamentosCorrentes.repository.ContasAPagarRepository;
@@ -22,6 +23,14 @@ public class ContasAPagarService {
 
     public Optional<ContasAPagarModel> buscarContaExata(Long codigo){
         return contasAPagarRepository.findById(codigo);
+    }
+
+    public List<ContasAPagarModel> buscarContasPorStatus(Status status){
+        return contasAPagarRepository.findByStatus(status);
+    }
+
+    public List<ContasAPagarModel> buscarContasPorTipo(Tipo tipo){
+        return contasAPagarRepository.findByTipo(tipo);
     }
 
     public ContasAPagarModel cadastrarContas(ContasAPagarModel contasAPagarModel){

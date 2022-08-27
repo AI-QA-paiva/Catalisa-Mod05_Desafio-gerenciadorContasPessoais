@@ -1,5 +1,7 @@
 package com.financeiro.desafioPagamentosCorrentes.controller;
 
+import com.financeiro.desafioPagamentosCorrentes.enums.Status;
+import com.financeiro.desafioPagamentosCorrentes.enums.Tipo;
 import com.financeiro.desafioPagamentosCorrentes.model.ContasAPagarModel;
 import com.financeiro.desafioPagamentosCorrentes.service.ContasAPagarService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +25,16 @@ public class ContasAPagarController {
     @GetMapping(path = "/contas/{idConta}")
     public ResponseEntity<Optional<ContasAPagarModel>> buscarContaEspecifica(@PathVariable Long codigo){
         return ResponseEntity.ok(contasAPagarService.buscarContaExata(codigo));
+    }
+
+    @GetMapping(path = "/contas/forma/status")
+    public ResponseEntity<List<ContasAPagarModel>> buscarTodasAsContasPorStatus(@PathVariable Status status){
+        return ResponseEntity.ok(contasAPagarService.buscarContasPorStatus(status));
+    }
+
+    @GetMapping(path = "/contas/forma/tipo")
+    public ResponseEntity<List<ContasAPagarModel>> buscarTodasAsContasPorTipo(@PathVariable Tipo tipo){
+        return ResponseEntity.ok(contasAPagarService.buscarContasPorTipo(tipo));
     }
 
     @PostMapping(path = "/contas")

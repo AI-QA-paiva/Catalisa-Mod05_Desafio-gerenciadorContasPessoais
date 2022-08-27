@@ -50,8 +50,11 @@ public class ContasAPagarController {
    }
 
     @DeleteMapping(path = "/contas/{idConta}")
-    public void deletarConta(@PathVariable Long idConta){
+    public ResponseEntity<Void> deletarConta(@PathVariable Long idConta){
         contasAPagarService.deletarConta(idConta);
+    return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
+
+        //contasAPagarService.deletarConta(idConta);
     }
 
 }

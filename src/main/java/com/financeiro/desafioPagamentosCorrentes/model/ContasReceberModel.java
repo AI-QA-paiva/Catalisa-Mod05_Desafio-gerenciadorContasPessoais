@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
@@ -22,27 +23,27 @@ public class ContasReceberModel {
     private Long codigo;
 
     @Column(name = "origem_recebimento")//  -- tem necessidade?  porque posso deixar a coluna nomeada pelo proprio atributo nao posso?
-    @Enumerated(EnumType.STRING)
     private String status;
 
     private String recebimento;
 
-    @NotEmpty
+    @NotEmpty(message = "Campo Valor não pode ser nulo ou vazio")
     private BigDecimal valorRecebido;
 
     @Column(name = "renda_classificada")  // aqui nao pode ficar como "Origem da Renda", daria conflito
-    @NotEmpty
+    @NotEmpty(message = "Não pode ser vazio ou nulo! Favor escolher entre ALUGUEIS, EMPREGO_CLT, FREELANCER para preencher")
     @Enumerated(EnumType.STRING)
     private TipoRecebimento tipoRecebido;
 
     @Column(length = 15, nullable = false)
-    @NotEmpty
+    @NotEmpty(message = "Este campo não pode ficar vazio")
+    @Size(min = 10, max = 10, message = "Informe data no formato aaaa-mm-dd")
     private LocalDate dataDeVencimento;
 
     @Column(length = 15)
     private LocalDate dataDeRecebimento;
 
     @ManyToOne
-    @JoinColumn(name = "usuario_id")
+    @JoinColumn(name = "usuario_id", referencedColumnName = "codigo")
     private UsuarioModel usuario_id;
 }

@@ -10,7 +10,8 @@ import java.util.List;
 
 @Repository
 public interface ContasReceberRepository extends JpaRepository<ContasReceberModel, Long> {
-    List<ContasReceberModel> findByRecebimentoAlugueis(RecebimentoAlugueis recebimentoAlugueis);
-
-    List<ContasReceberModel> findByTipoRecebimento(TipoRecebimento tipoRecebimento);
+//    List<ContasReceberModel> findByRecebimentoAlugueis(RecebimentoAlugueis recebimentoAlugueis);
+//
+//    List<ContasReceberModel> findByTipoRecebimento(TipoRecebimento tipoRecebimento);
 }
+//PROBLEMA DE NAO CONECTAR O BANCO ESTA AQUI EM REPOSITORY POR CONTA DAS ENUNS

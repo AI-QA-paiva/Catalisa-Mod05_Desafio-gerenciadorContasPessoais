@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 
 @AllArgsConstructor
 @Data
@@ -17,23 +18,30 @@ public class EnderecoModel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long codigo;
 
+    @Column(nullable = false)
+    @NotEmpty(message = "Campo deve ser preenchido")
     private String logradouro;
 
+    @Column(nullable = false)
+    @NotEmpty(message = "Campo deve ser preenchido")
     private String bairro;
 
+    @Column(nullable = false)
+    @NotEmpty(message = "Campo deve ser preenchido")
     private String cep;
 
+    @Column(nullable = false)
     private String pontoReferencia;
 
 
     //relaçao muitos endereços para uma mesma cidade
     @ManyToOne
-    @JoinColumn(name = "cidade_id")
+    @JoinColumn(name = "cidade_id", referencedColumnName = "codigo")
     private CidadeModel cidade_id;
 
     //relação muitos endereços para um unico usario
     @ManyToOne
-    @JoinColumn(name = "endereco_id")
-    private UsuarioModel endereco_id;
+    @JoinColumn(name = "usuario_id", referencedColumnName = "codigo")
+    private UsuarioModel usuario_id;
 
 }

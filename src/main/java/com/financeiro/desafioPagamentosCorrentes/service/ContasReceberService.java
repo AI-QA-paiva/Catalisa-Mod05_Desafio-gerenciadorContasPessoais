@@ -16,8 +16,8 @@ public class ContasReceberService {
     @Autowired
     private ContasReceberRepository contasReceberRepository;
 
-    @Autowired
-    private CalculadoraAluguelFactory calculadoraAluguelFactory;
+//    @Autowired
+//    private CalculadoraAluguelFactory calculadoraAluguelFactory;
 
     public ContasReceberModel cadastrarRecebimento(ContasReceberModel anotarRecebimento){
 

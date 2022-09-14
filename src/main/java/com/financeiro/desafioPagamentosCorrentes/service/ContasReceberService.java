@@ -1,13 +1,15 @@
 package com.financeiro.desafioPagamentosCorrentes.service;
 
+import com.financeiro.desafioPagamentosCorrentes.enums.Status;
 import com.financeiro.desafioPagamentosCorrentes.enums.TipoRecebimento;
-import com.financeiro.desafioPagamentosCorrentes.model.ContasReceberModel;
+import com.financeiro.desafioPagamentosCorrentes.model.ContaReceberModel;
 import com.financeiro.desafioPagamentosCorrentes.model.calculadoraAluguel.CalculadoraAluguel;
 import com.financeiro.desafioPagamentosCorrentes.model.calculadoraAluguel.CalculadoraAluguelFactory;
 import com.financeiro.desafioPagamentosCorrentes.repository.ContasReceberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -16,34 +18,32 @@ public class ContasReceberService {
     @Autowired
     private ContasReceberRepository contasReceberRepository;
 
-//    @Autowired
-//    private CalculadoraAluguelFactory calculadoraAluguelFactory;
+    @Autowired
+    private CalculadoraAluguelFactory calculadoraAluguelFactory;
 
-    public ContasReceberModel cadastrarRecebimento(ContasReceberModel anotarRecebimento){
+    public ContaReceberModel cadastrarRecebimento(ContaReceberModel recebimento) {
 
-        return contasReceberRepository.save(anotarRecebimento);
+        if(!recebimento.getStatus().equals(Status.PAGO)) {
+            if (recebimento.getTipoRecebido().equals(TipoRecebimento.ALUGUEIS)) {
 
-//        Boolean qualTipoRecebimento = anotarRecebimento.getStatus().equals(TipoRecebimento.ALUGUEIS);
-//        if(Boolean.FALSE.equals(qualTipoRecebimento)){
-//            return contasReceberRepository.save(anotarRecebimento);
-//        }else {
-//            CalculadoraAluguel calculadoraAluguel = calculadoraAluguelFactory}
-
-//        esse boolean vai servir para identificar a enum RecebimentoAlugueis
-//            Boolean dataAgora = LocalDate.now().isAfter(anotarRecebimento.getDataDeVencimento());
-//                if(Boolean.FALSE.equals(dataAgora)){ anotarRecebimento.}
-
+                CalculadoraAluguel calculadoraAluguel = calculadoraAluguelFactory.getCalculadoraAluguel(recebimento);
+                recebimento.setValorQuePagou(calculadoraAluguel.calcular(recebimento)); //setValorRecebido(calculadoraAluguel.calcular(recebimento));
+            }
+        }else {
+            recebimento.setDataDeRecebimento(LocalDate.now());
+        }
+        return contasReceberRepository.save(recebimento);
     }
 
-    public List<ContasReceberModel> buscarTodosOsRecebimentos(){
+    public List<ContaReceberModel> buscarTodosOsRecebimentos(){
         return contasReceberRepository.findAll();
     }
 
-    public Optional<ContasReceberModel> buscarRecebimentoEspecifico(Long codigo){
+    public Optional<ContaReceberModel> buscarRecebimentoEspecifico(Long codigo){
         return contasReceberRepository.findById(codigo);
     }
 
-    public ContasReceberModel alterarRecimentoEspecifico(ContasReceberModel alterandoRecebimento){
+    public ContaReceberModel alterarRecimentoEspecifico(ContaReceberModel alterandoRecebimento){
         return contasReceberRepository.save(alterandoRecebimento);
     }
 

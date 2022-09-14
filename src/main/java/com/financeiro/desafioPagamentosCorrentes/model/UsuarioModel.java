@@ -30,8 +30,8 @@ public class UsuarioModel {
     private String nomeUsuario;
 
     @Column(nullable = false)
-    @NotEmpty(message = "Este campo não pode ficar vazio")
-    //@Size(min = 10, max = 10, message = "Informe data no formato aaaa-mm-dd")
+    //estava reportando erro (porque??) @NotEmpty(message = "Este campo não pode ficar vazio")
+    @Size(min = 10, max = 10, message = "Informe data no formato aaaa-mm-dd")
     private LocalDate dataNascimento;
 
     @Column(nullable = false)
@@ -48,7 +48,7 @@ public class UsuarioModel {
     //relação um usuario tem varias contas a receber
     @JsonIgnore
     @OneToMany(mappedBy = "usuario_id", cascade = CascadeType.ALL)
-    private List<ContasReceberModel> listaDeContasReceber = new ArrayList<>();
+    private List<ContaReceberModel> listaDeContasReceber = new ArrayList<>();
 
     //relação um usuario tem varios endereços
     @JsonIgnore

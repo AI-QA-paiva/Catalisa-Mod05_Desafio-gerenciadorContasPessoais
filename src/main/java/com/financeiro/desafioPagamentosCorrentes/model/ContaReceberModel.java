@@ -1,5 +1,6 @@
 package com.financeiro.desafioPagamentosCorrentes.model;
 
+import com.financeiro.desafioPagamentosCorrentes.enums.Status;
 import com.financeiro.desafioPagamentosCorrentes.enums.TipoRecebimento;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -17,31 +18,31 @@ import java.time.LocalDate;
 @Entity
 @NoArgsConstructor
 @Table(name = "recebimento")
-public class ContasReceberModel {
+public class ContaReceberModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long codigo;
 
-    @Column(name = "origem_recebimento")//  -- tem necessidade?  porque posso deixar a coluna nomeada pelo proprio atributo nao posso?
-    private String status;
+    @Column
+    @Enumerated(EnumType.STRING)
+    private Status status;
 
     private String recebimento;
 
-    @NotEmpty(message = "Campo Valor não pode ser nulo ou vazio")
-    private BigDecimal valorRecebido;
+    @Column(nullable = false)
+    private BigDecimal valorRecebido; // valor que o usuario irá informar
 
-    @Column(name = "renda_classificada")  // aqui nao pode ficar como "Origem da Renda", daria conflito
-    @NotEmpty(message = "Não pode ser vazio ou nulo! Favor escolher entre ALUGUEIS, EMPREGO_CLT, FREELANCER para preencher")
+    @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private TipoRecebimento tipoRecebido;
 
-    @Column(length = 15, nullable = false)
-    @NotEmpty(message = "Este campo não pode ficar vazio")
-    @Size(min = 10, max = 10, message = "Informe data no formato aaaa-mm-dd")
+    @Column(nullable = false)
     private LocalDate dataDeVencimento;
 
-    @Column(length = 15)
-    private LocalDate dataDeRecebimento;
+    @Column
+    private LocalDate dataDeRecebimento; // calculado pelo codigo
+
+    private BigDecimal valorQuePagou; // valor que sera calculado a partir da checagem de data
 
     @ManyToOne
     @JoinColumn(name = "usuario_id", referencedColumnName = "codigo")

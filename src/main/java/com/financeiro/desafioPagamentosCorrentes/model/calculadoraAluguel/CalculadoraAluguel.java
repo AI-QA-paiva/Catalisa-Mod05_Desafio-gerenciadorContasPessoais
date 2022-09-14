@@ -1,9 +1,9 @@
 package com.financeiro.desafioPagamentosCorrentes.model.calculadoraAluguel;
 
-import com.financeiro.desafioPagamentosCorrentes.model.ContasReceberModel;
+import com.financeiro.desafioPagamentosCorrentes.model.ContaReceberModel;
 
 import java.math.BigDecimal;
 
 public interface CalculadoraAluguel{
-    BigDecimal calcular(ContasReceberModel contasReceberModel);
+    BigDecimal calcular(ContaReceberModel contaReceberModel);
 }

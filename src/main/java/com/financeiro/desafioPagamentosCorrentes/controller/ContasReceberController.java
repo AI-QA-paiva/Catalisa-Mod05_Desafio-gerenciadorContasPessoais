@@ -1,6 +1,6 @@
 package com.financeiro.desafioPagamentosCorrentes.controller;
 
-import com.financeiro.desafioPagamentosCorrentes.model.ContasReceberModel;
+import com.financeiro.desafioPagamentosCorrentes.model.ContaReceberModel;
 import com.financeiro.desafioPagamentosCorrentes.service.ContasReceberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -16,23 +16,23 @@ public class ContasReceberController {
     private ContasReceberService contasReceberService;
 
     @PostMapping(path = "/recebimento")
-    public ResponseEntity<ContasReceberModel> cadastrarNovoRecebimento(@RequestBody ContasReceberModel cadastrandoRecebimento){
-        ContasReceberModel novoRecebimento = contasReceberService.cadastrarRecebimento(cadastrandoRecebimento);
+    public ResponseEntity<ContaReceberModel> cadastrarNovoRecebimento(@RequestBody ContaReceberModel cadastrandoRecebimento){
+        ContaReceberModel novoRecebimento = contasReceberService.cadastrarRecebimento(cadastrandoRecebimento);
         return new ResponseEntity<>(novoRecebimento, HttpStatus.CREATED);
     }
 
     @GetMapping(path = "/recebimento")
-    public ResponseEntity<List<ContasReceberModel>> buscarOsValoresRecebidos(){
+    public ResponseEntity<List<ContaReceberModel>> buscarOsValoresRecebidos(){
         return ResponseEntity.ok(contasReceberService.buscarTodosOsRecebimentos());
     }
 
     @GetMapping(path = "/recebimento/{codigo}")
-    public ResponseEntity<Optional<ContasReceberModel>> buscarUmRecebimentoEspecifico(@PathVariable Long codigo){
+    public ResponseEntity<Optional<ContaReceberModel>> buscarUmRecebimentoEspecifico(@PathVariable Long codigo){
         return ResponseEntity.ok(contasReceberService.buscarRecebimentoEspecifico(codigo));
     }
 
     @PutMapping(path = "/recebimento/{codigo}")
-    public ResponseEntity<ContasReceberModel> alterarUmRecebimentoId(@RequestBody ContasReceberModel alteraRecebimento, @PathVariable Long codigo){
+    public ResponseEntity<ContaReceberModel> alterarUmRecebimentoId(@RequestBody ContaReceberModel alteraRecebimento, @PathVariable Long codigo){
         alteraRecebimento.setCodigo(codigo);
         return ResponseEntity.ok(contasReceberService.alterarRecimentoEspecifico(alteraRecebimento));
     }

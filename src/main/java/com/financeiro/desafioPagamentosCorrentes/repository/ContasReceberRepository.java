@@ -1,15 +1,11 @@
 package com.financeiro.desafioPagamentosCorrentes.repository;
 
-import com.financeiro.desafioPagamentosCorrentes.enums.RecebimentoAlugueis;
-import com.financeiro.desafioPagamentosCorrentes.enums.TipoRecebimento;
-import com.financeiro.desafioPagamentosCorrentes.model.ContasReceberModel;
+import com.financeiro.desafioPagamentosCorrentes.model.ContaReceberModel;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
-
 @Repository
-public interface ContasReceberRepository extends JpaRepository<ContasReceberModel, Long> {
+public interface ContasReceberRepository extends JpaRepository<ContaReceberModel, Long> {
 //    List<ContasReceberModel> findByRecebimentoAlugueis(RecebimentoAlugueis recebimentoAlugueis);
 //
 //    List<ContasReceberModel> findByTipoRecebimento(TipoRecebimento tipoRecebimento);

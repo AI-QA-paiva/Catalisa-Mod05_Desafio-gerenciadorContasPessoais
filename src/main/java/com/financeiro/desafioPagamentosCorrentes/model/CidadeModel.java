@@ -24,12 +24,12 @@ public class CidadeModel {
     private String nomeCidade;
 
 
-    //relação muitas cidades para um mesmo estado
+    //relação na model Cidade, para dizer que muitas cidades para um mesmo estado
     @ManyToOne
     @JoinColumn(name = "estado_id", referencedColumnName = "codigo")
     private EstadoModel estado_id;
 
-    //relação uma Cidade tem varios endereços
+    //relação na model Cidade, para dizer que uma Cidade tem varios endereços
     @JsonIgnore
     @OneToMany(mappedBy = "cidade_id",cascade = CascadeType.ALL)
     private List<EnderecoModel> listaDeEndereco = new ArrayList<>();

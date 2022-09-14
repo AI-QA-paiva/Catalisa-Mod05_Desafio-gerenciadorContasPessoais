@@ -55,6 +55,4 @@ public class UsuarioModel {
     @OneToMany(mappedBy = "usuario_id",cascade = CascadeType.ALL)
     private List<EnderecoModel> litaDeEndereco = new ArrayList<>();
 
-
-
 }

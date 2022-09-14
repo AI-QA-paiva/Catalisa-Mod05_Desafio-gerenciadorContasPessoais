@@ -31,7 +31,7 @@ public class EstadoModel {
     @NotEmpty(message = "Este campo não pode ficar vazio")
     private String nomeEstado;
 
-    //relação um Estado tem varias cidades
+    //relação na model Estado para dizer que um Estado tem varias cidades
     @JsonIgnore
     @OneToMany(mappedBy = "estado_id",cascade = CascadeType.ALL)
     private List<CidadeModel> listacidades = new ArrayList<>();

@@ -1,4 +1,4 @@
-package com.financeiro.desafioPagamentosCorrentes.model;
+package com.financeiro.desafioPagamentosCorrentes.exception.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;

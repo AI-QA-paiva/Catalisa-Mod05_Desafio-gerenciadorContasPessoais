@@ -1,12 +1,13 @@
 package com.financeiro.desafioPagamentosCorrentes.controller;
 
-import com.financeiro.desafioPagamentosCorrentes.model.EstadoModel;
+import com.financeiro.desafioPagamentosCorrentes.exception.model.EstadoModel;
 import com.financeiro.desafioPagamentosCorrentes.service.EstadoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 
@@ -16,7 +17,7 @@ public class EstadoController {
     private EstadoService estadoService;
 
     @PostMapping(path = "/estado")
-    public ResponseEntity<EstadoModel> cadastrandoNovoEstado(@RequestBody EstadoModel cadastrando){
+    public ResponseEntity<EstadoModel> cadastrandoNovoEstado(@Valid @RequestBody EstadoModel cadastrando){
         EstadoModel novoEstado = estadoService.cadastrarEstado(cadastrando);
         return new ResponseEntity<>(novoEstado, HttpStatus.CREATED);
     }

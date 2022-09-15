@@ -2,7 +2,7 @@ package com.financeiro.desafioPagamentosCorrentes.repository;
 
 import com.financeiro.desafioPagamentosCorrentes.enums.Status;
 import com.financeiro.desafioPagamentosCorrentes.enums.Tipo;
-import com.financeiro.desafioPagamentosCorrentes.model.ContasAPagarModel;
+import com.financeiro.desafioPagamentosCorrentes.exception.model.ContasAPagarModel;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

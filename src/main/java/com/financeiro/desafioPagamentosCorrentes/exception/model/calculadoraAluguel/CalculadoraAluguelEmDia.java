@@ -1,6 +1,6 @@
-package com.financeiro.desafioPagamentosCorrentes.model.calculadoraAluguel;
+package com.financeiro.desafioPagamentosCorrentes.exception.model.calculadoraAluguel;
 
-import com.financeiro.desafioPagamentosCorrentes.model.ContaReceberModel;
+import com.financeiro.desafioPagamentosCorrentes.exception.model.ContaReceberModel;
 
 import java.math.BigDecimal;
 

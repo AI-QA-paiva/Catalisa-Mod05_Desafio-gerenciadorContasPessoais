@@ -1,5 +1,6 @@
-package com.financeiro.desafioPagamentosCorrentes.model;
+package com.financeiro.desafioPagamentosCorrentes.exception.model;
 
+import com.financeiro.desafioPagamentosCorrentes.enums.RecebimentoAlugueis;
 import com.financeiro.desafioPagamentosCorrentes.enums.Status;
 import com.financeiro.desafioPagamentosCorrentes.enums.TipoRecebimento;
 import lombok.AllArgsConstructor;
@@ -7,8 +8,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.Size;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
@@ -39,10 +38,14 @@ public class ContaReceberModel {
     @Column(nullable = false)
     private LocalDate dataDeVencimento;
 
+    //@JsonIgnore
+    @Enumerated(EnumType.STRING)
+    private RecebimentoAlugueis recebimentoAlugueis;
+
     @Column
     private LocalDate dataDeRecebimento; // calculado pelo codigo
 
-    private BigDecimal valorQuePagou; // valor que sera calculado a partir da checagem de data
+    private BigDecimal valorAReceber; // valor que sera calculado a partir da checagem de data
 
     @ManyToOne
     @JoinColumn(name = "usuario_id", referencedColumnName = "codigo")

@@ -2,13 +2,14 @@ package com.financeiro.desafioPagamentosCorrentes.controller;
 
 import com.financeiro.desafioPagamentosCorrentes.enums.Status;
 import com.financeiro.desafioPagamentosCorrentes.enums.Tipo;
-import com.financeiro.desafioPagamentosCorrentes.model.ContasAPagarModel;
+import com.financeiro.desafioPagamentosCorrentes.exception.model.ContasAPagarModel;
 import com.financeiro.desafioPagamentosCorrentes.service.ContasAPagarService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 
@@ -38,7 +39,7 @@ public class ContasAPagarController {
     }
 
     @PostMapping(path = "/contas")
-    public ResponseEntity<ContasAPagarModel> cadastrarConta(@RequestBody ContasAPagarModel cadastrando){
+    public ResponseEntity<ContasAPagarModel> cadastrarConta(@Valid @RequestBody ContasAPagarModel cadastrando){
         ContasAPagarModel conta = contasAPagarService.cadastrarContas(cadastrando);
         return new ResponseEntity<>(conta, HttpStatus.CREATED);
     }

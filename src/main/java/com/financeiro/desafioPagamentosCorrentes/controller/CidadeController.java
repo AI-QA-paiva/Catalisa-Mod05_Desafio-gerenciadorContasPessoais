@@ -1,12 +1,13 @@
 package com.financeiro.desafioPagamentosCorrentes.controller;
 
-import com.financeiro.desafioPagamentosCorrentes.model.CidadeModel;
+import com.financeiro.desafioPagamentosCorrentes.exception.model.CidadeModel;
 import com.financeiro.desafioPagamentosCorrentes.service.CidadeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 
@@ -16,7 +17,7 @@ public class CidadeController {
     private CidadeService cidadeService;
 
     @PostMapping(path = "/cidade")
-    public ResponseEntity<CidadeModel> cadastrarCidade(@RequestBody CidadeModel cadastrandoCidade){
+    public ResponseEntity<CidadeModel> cadastrarCidade(@Valid @RequestBody CidadeModel cadastrandoCidade){
         CidadeModel cidadeNova = cidadeService.cadastrarCidade(cadastrandoCidade);
         return new ResponseEntity<>(cidadeNova, HttpStatus.CREATED);
     }

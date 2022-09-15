@@ -1,12 +1,13 @@
 package com.financeiro.desafioPagamentosCorrentes.controller;
 
-import com.financeiro.desafioPagamentosCorrentes.model.UsuarioModel;
+import com.financeiro.desafioPagamentosCorrentes.exception.model.UsuarioModel;
 import com.financeiro.desafioPagamentosCorrentes.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 
@@ -16,7 +17,7 @@ public class UsuarioController {
     private UsuarioService usuarioService;
 
     @PostMapping(path = "/usuario")
-    public ResponseEntity<UsuarioModel> cadastrarNovoUsuario(@RequestBody UsuarioModel cadastrando){
+    public ResponseEntity<UsuarioModel> cadastrarNovoUsuario(@Valid @RequestBody UsuarioModel cadastrando){
         UsuarioModel novoUsuario = usuarioService.cadastrarUsuario(cadastrando);
         return new ResponseEntity<>(novoUsuario, HttpStatus.CREATED);
     }

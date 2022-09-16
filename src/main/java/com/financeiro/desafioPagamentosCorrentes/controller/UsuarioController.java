@@ -1,6 +1,6 @@
 package com.financeiro.desafioPagamentosCorrentes.controller;
 
-import com.financeiro.desafioPagamentosCorrentes.exception.model.UsuarioModel;
+import com.financeiro.desafioPagamentosCorrentes.model.UsuarioModel;
 import com.financeiro.desafioPagamentosCorrentes.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

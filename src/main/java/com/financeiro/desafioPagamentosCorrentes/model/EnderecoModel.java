@@ -1,4 +1,4 @@
-package com.financeiro.desafioPagamentosCorrentes.exception.model;
+package com.financeiro.desafioPagamentosCorrentes.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

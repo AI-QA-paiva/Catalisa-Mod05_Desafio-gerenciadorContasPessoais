@@ -1,7 +1,7 @@
-package com.financeiro.desafioPagamentosCorrentes.exception.model.calculadoraAluguel;
+package com.financeiro.desafioPagamentosCorrentes.model.calculadoraAluguel;
 
 import com.financeiro.desafioPagamentosCorrentes.enums.RecebimentoAlugueis;
-import com.financeiro.desafioPagamentosCorrentes.exception.model.ContaReceberModel;
+import com.financeiro.desafioPagamentosCorrentes.model.ContaReceberModel;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;

@@ -2,7 +2,7 @@ package com.financeiro.desafioPagamentosCorrentes.controller;
 
 import com.financeiro.desafioPagamentosCorrentes.enums.Status;
 import com.financeiro.desafioPagamentosCorrentes.enums.Tipo;
-import com.financeiro.desafioPagamentosCorrentes.exception.model.ContasAPagarModel;
+import com.financeiro.desafioPagamentosCorrentes.model.ContasAPagarModel;
 import com.financeiro.desafioPagamentosCorrentes.service.ContasAPagarService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

@@ -3,9 +3,9 @@ package com.financeiro.desafioPagamentosCorrentes.service;
 import com.financeiro.desafioPagamentosCorrentes.enums.RecebimentoAlugueis;
 import com.financeiro.desafioPagamentosCorrentes.enums.Status;
 import com.financeiro.desafioPagamentosCorrentes.enums.TipoRecebimento;
-import com.financeiro.desafioPagamentosCorrentes.exception.model.ContaReceberModel;
-import com.financeiro.desafioPagamentosCorrentes.exception.model.calculadoraAluguel.CalculadoraAluguel;
-import com.financeiro.desafioPagamentosCorrentes.exception.model.calculadoraAluguel.CalculadoraAluguelFactory;
+import com.financeiro.desafioPagamentosCorrentes.model.ContaReceberModel;
+import com.financeiro.desafioPagamentosCorrentes.model.calculadoraAluguel.CalculadoraAluguel;
+import com.financeiro.desafioPagamentosCorrentes.model.calculadoraAluguel.CalculadoraAluguelFactory;
 import com.financeiro.desafioPagamentosCorrentes.repository.ContasReceberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,8 +24,14 @@ public class ContasReceberService {
 
     public ContaReceberModel cadastrarRecebimento(ContaReceberModel recebimento) {
 
+        if(recebimento.getStatus().equals(Status.AGUARDANDO)){ //||recebimento.getStatus().equals(Status.VENCIDA))
+            return contasReceberRepository.save(recebimento);
 
-        if (recebimento.getStatus().equals(Status.PAGO)) {
+        } else if (recebimento.getStatus().equals((Status.VENCIDA))) {
+            RecebimentoAlugueis recebimentoAlugueis = calculadoraAluguelFactory.recebimentoAlugueis(recebimento.getDataDeVencimento(), recebimento.getDataDeRecebimento());
+            recebimento.setRecebimentoAlugueis(recebimentoAlugueis);
+            return contasReceberRepository.save(recebimento);
+        }else if (recebimento.getStatus().equals(Status.PAGO)) {
             recebimento.setDataDeRecebimento(LocalDate.now());
             if (recebimento.getTipoRecebido().equals(TipoRecebimento.ALUGUEIS)) {
 

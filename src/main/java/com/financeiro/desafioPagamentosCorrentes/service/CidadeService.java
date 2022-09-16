@@ -1,6 +1,6 @@
 package com.financeiro.desafioPagamentosCorrentes.service;
 
-import com.financeiro.desafioPagamentosCorrentes.exception.model.CidadeModel;
+import com.financeiro.desafioPagamentosCorrentes.model.CidadeModel;
 import com.financeiro.desafioPagamentosCorrentes.repository.CidadeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

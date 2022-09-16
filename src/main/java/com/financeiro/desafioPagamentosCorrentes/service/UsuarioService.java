@@ -1,6 +1,6 @@
 package com.financeiro.desafioPagamentosCorrentes.service;
 
-import com.financeiro.desafioPagamentosCorrentes.exception.model.UsuarioModel;
+import com.financeiro.desafioPagamentosCorrentes.model.UsuarioModel;
 import com.financeiro.desafioPagamentosCorrentes.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

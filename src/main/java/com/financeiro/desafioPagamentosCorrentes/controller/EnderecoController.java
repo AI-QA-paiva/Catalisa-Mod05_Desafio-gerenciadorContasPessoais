@@ -1,6 +1,6 @@
 package com.financeiro.desafioPagamentosCorrentes.controller;
 
-import com.financeiro.desafioPagamentosCorrentes.exception.model.EnderecoModel;
+import com.financeiro.desafioPagamentosCorrentes.model.EnderecoModel;
 import com.financeiro.desafioPagamentosCorrentes.service.EnderecoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

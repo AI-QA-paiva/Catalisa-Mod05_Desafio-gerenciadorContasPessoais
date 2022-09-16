@@ -1,6 +1,6 @@
 package com.financeiro.desafioPagamentosCorrentes.repository;
 
-import com.financeiro.desafioPagamentosCorrentes.exception.model.ContaReceberModel;
+import com.financeiro.desafioPagamentosCorrentes.model.ContaReceberModel;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

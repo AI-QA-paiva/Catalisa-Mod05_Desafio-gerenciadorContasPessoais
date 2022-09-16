@@ -29,7 +29,7 @@ public class CalculadoraAluguelFactory {
         return dataVencimento.isAfter(LocalDate.now());
     }
 
-    public RecebimentoAlugueis recebimentoAlugueis(LocalDate dataDeVencimento, LocalDate dataDeRecebimento) {
+    public RecebimentoAlugueis identificarSituacaoPagoComDataDeRecebimentoAlugueis(LocalDate dataDeVencimento, LocalDate dataDeRecebimento) {
         if (dataDeRecebimento.isBefore(dataDeVencimento)) {
             return RecebimentoAlugueis.ADIANTADO;
         } else if (dataDeRecebimento.isEqual(dataDeVencimento)) {
@@ -38,6 +38,14 @@ public class CalculadoraAluguelFactory {
             return RecebimentoAlugueis.EM_ATRASO;
         } else {
             return null;
+        }
+    }
+
+    public RecebimentoAlugueis identificarSituacaoComDataAtual(LocalDate dataDeVencimento) {
+        if (dataDeVencimento.isBefore(LocalDate.now())){
+            return RecebimentoAlugueis.EM_ATRASO;
+        } else {
+            return RecebimentoAlugueis.EM_DIA;
         }
     }
 

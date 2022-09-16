@@ -25,12 +25,49 @@ public class ContasReceberService {
     public ContaReceberModel cadastrarRecebimento(ContaReceberModel recebimento) {
 
         if(recebimento.getStatus().equals(Status.AGUARDANDO)){ //||recebimento.getStatus().equals(Status.VENCIDA))
+
+            //qdo informa aguardando, verifica se Aluguel; checa data vencimento vs data hoje, seta situacao enum recebimento alugueis, e em seguida chama factory, seta campo valorAreceber
+            if (recebimento.getTipoRecebido().equals(TipoRecebimento.ALUGUEIS)){
+
+            RecebimentoAlugueis recebimentoAlugueis = calculadoraAluguelFactory.identificarSituacaoComDataAtual(recebimento.getDataDeVencimento());
+            recebimento.setRecebimentoAlugueis(recebimentoAlugueis);
+
+            CalculadoraAluguel calculadoraAluguel = calculadoraAluguelFactory.getCalculadoraAluguel(recebimento);
+            recebimento.setValorAReceber(calculadoraAluguel.calcular(recebimento));
+
             return contasReceberRepository.save(recebimento);
 
+            }else {
+
+                RecebimentoAlugueis recebimentoAlugueis = calculadoraAluguelFactory.identificarSituacaoComDataAtual(recebimento.getDataDeVencimento());
+                recebimento.setRecebimentoAlugueis(recebimentoAlugueis);
+                return contasReceberRepository.save(recebimento);
+
+            }
+
+           // recebimento.setValorAReceber(recebimento.getValorRecebido();
+
+
         } else if (recebimento.getStatus().equals((Status.VENCIDA))) {
-            RecebimentoAlugueis recebimentoAlugueis = calculadoraAluguelFactory.recebimentoAlugueis(recebimento.getDataDeVencimento(), recebimento.getDataDeRecebimento());
-            recebimento.setRecebimentoAlugueis(recebimentoAlugueis);
-            return contasReceberRepository.save(recebimento);
+
+            if (recebimento.getTipoRecebido().equals(TipoRecebimento.ALUGUEIS)){
+
+                RecebimentoAlugueis recebimentoAlugueis = calculadoraAluguelFactory.identificarSituacaoComDataAtual(recebimento.getDataDeVencimento());
+                recebimento.setRecebimentoAlugueis(recebimentoAlugueis);
+
+                CalculadoraAluguel calculadoraAluguel = calculadoraAluguelFactory.getCalculadoraAluguel(recebimento);
+                recebimento.setValorAReceber(calculadoraAluguel.calcular(recebimento));
+
+                return contasReceberRepository.save(recebimento);
+
+            }else {
+
+                RecebimentoAlugueis recebimentoAlugueis = calculadoraAluguelFactory.identificarSituacaoComDataAtual(recebimento.getDataDeVencimento());
+                recebimento.setRecebimentoAlugueis(recebimentoAlugueis);
+                return contasReceberRepository.save(recebimento);
+
+            }
+
         }else if (recebimento.getStatus().equals(Status.PAGO)) {
             recebimento.setDataDeRecebimento(LocalDate.now());
             if (recebimento.getTipoRecebido().equals(TipoRecebimento.ALUGUEIS)) {
@@ -38,15 +75,16 @@ public class ContasReceberService {
                 CalculadoraAluguel calculadoraAluguel = calculadoraAluguelFactory.getCalculadoraAluguel(recebimento);
                 recebimento.setValorAReceber(calculadoraAluguel.calcular(recebimento)); //setValorRecebido(calculadoraAluguel.calcular(recebimento));
             }
+
         } else {
             recebimento.setDataDeRecebimento(null);
 
         }
 
-        RecebimentoAlugueis recebimentoAlugueis = calculadoraAluguelFactory.recebimentoAlugueis(recebimento.getDataDeVencimento(), recebimento.getDataDeRecebimento());
+        RecebimentoAlugueis recebimentoAlugueis = calculadoraAluguelFactory.identificarSituacaoPagoComDataDeRecebimentoAlugueis(recebimento.getDataDeVencimento(), recebimento.getDataDeRecebimento());
         recebimento.setRecebimentoAlugueis(recebimentoAlugueis);
-
         return contasReceberRepository.save(recebimento);
+
     }
 
     public List<ContaReceberModel> buscarTodosOsRecebimentos() {

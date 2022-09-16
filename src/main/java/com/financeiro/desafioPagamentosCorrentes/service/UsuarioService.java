@@ -13,23 +13,23 @@ public class UsuarioService {
     @Autowired
     private UsuarioRepository usuarioRepository;
 
-    public UsuarioModel cadastrarUsuario(UsuarioModel usuarioModel){
+    public UsuarioModel cadastrarUsuario(UsuarioModel usuarioModel) {
         return usuarioRepository.save(usuarioModel);
     }
 
-    public List<UsuarioModel> buscarTodosOsUsuarios(){
+    public List<UsuarioModel> buscarTodosOsUsuarios() {
         return usuarioRepository.findAll();
     }
 
-    public Optional<UsuarioModel> buscarUsuarioEspecifico(Long codigo){
+    public Optional<UsuarioModel> buscarUsuarioEspecifico(Long codigo) {
         return usuarioRepository.findById(codigo);
     }
 
-    public UsuarioModel alterarUsuarioEspecifico(UsuarioModel alterandoUsuario){
+    public UsuarioModel alterarUsuarioEspecifico(UsuarioModel alterandoUsuario) {
         return usuarioRepository.save(alterandoUsuario);
     }
 
-    public void deletarUsuarioEspecifico(Long codigo){
+    public void deletarUsuarioEspecifico(Long codigo) {
         usuarioRepository.deleteById(codigo);
     }
 

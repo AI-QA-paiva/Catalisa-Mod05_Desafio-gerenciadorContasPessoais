@@ -42,7 +42,7 @@ public class CalculadoraAluguelFactory {
     }
 
     public RecebimentoAlugueis identificarSituacaoComDataAtual(LocalDate dataDeVencimento) {
-        if (dataDeVencimento.isBefore(LocalDate.now())){
+        if (dataDeVencimento.isBefore(LocalDate.now())) {
             return RecebimentoAlugueis.EM_ATRASO;
         } else {
             return RecebimentoAlugueis.EM_DIA;

@@ -4,7 +4,7 @@ import com.financeiro.desafioPagamentosCorrentes.model.ContaReceberModel;
 
 import java.math.BigDecimal;
 
-public class CalculadoraAluguelEmAtraso implements CalculadoraAluguel{
+public class CalculadoraAluguelEmAtraso implements CalculadoraAluguel {
 
     @Override
     public BigDecimal calcular(ContaReceberModel contaReceberModel) {

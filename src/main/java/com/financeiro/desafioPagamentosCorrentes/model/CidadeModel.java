@@ -31,7 +31,7 @@ public class CidadeModel {
 
     //relação na model Cidade, para dizer que uma Cidade tem varios endereços
     @JsonIgnore
-    @OneToMany(mappedBy = "cidade_id",cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "cidade_id", cascade = CascadeType.ALL)
     private List<EnderecoModel> listaDeEndereco = new ArrayList<>();
 
 }

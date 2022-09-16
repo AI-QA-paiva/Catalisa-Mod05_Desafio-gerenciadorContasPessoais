@@ -13,23 +13,23 @@ public class EstadoService {
     @Autowired
     private EstadoRepository estadoRepository;
 
-    public EstadoModel cadastrarEstado(EstadoModel estadoModel){
+    public EstadoModel cadastrarEstado(EstadoModel estadoModel) {
         return estadoRepository.save(estadoModel);
     }
 
-    public List<EstadoModel> buscarTodosOsEstados(){
+    public List<EstadoModel> buscarTodosOsEstados() {
         return estadoRepository.findAll();
     }
 
-    public Optional<EstadoModel> buscarEstadoEspecifico(Long codigo){
+    public Optional<EstadoModel> buscarEstadoEspecifico(Long codigo) {
         return estadoRepository.findById(codigo);
     }
 
-    public EstadoModel alterarEstadoEspecifico(EstadoModel alterandoEstado){
+    public EstadoModel alterarEstadoEspecifico(EstadoModel alterandoEstado) {
         return estadoRepository.save(alterandoEstado);
     }
 
-    public void deletarEstadoEspecifico(Long codigo){
+    public void deletarEstadoEspecifico(Long codigo) {
         estadoRepository.deleteById(codigo);
     }
 

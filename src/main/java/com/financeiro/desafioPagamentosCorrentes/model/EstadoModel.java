@@ -15,7 +15,7 @@ import java.util.List;
 @Data
 @Entity
 @NoArgsConstructor
-@Table(name="estado")
+@Table(name = "estado")
 
 public class EstadoModel {
     @Id
@@ -33,7 +33,7 @@ public class EstadoModel {
 
     //relação na model Estado para dizer que um Estado tem varias cidades
     @JsonIgnore
-    @OneToMany(mappedBy = "estado_id",cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "estado_id", cascade = CascadeType.ALL)
     private List<CidadeModel> listacidades = new ArrayList<>();
 
 }

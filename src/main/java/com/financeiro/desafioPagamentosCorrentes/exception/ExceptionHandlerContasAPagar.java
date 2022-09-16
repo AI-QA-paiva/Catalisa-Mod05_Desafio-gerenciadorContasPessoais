@@ -21,28 +21,21 @@ public class ExceptionHandlerContasAPagar extends ResponseEntityExceptionHandler
 
     @Override
     protected ResponseEntity<Object> handleHttpMessageNotReadable(HttpMessageNotReadableException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
-        String mensagemUser = messageSource.getMessage("mensagem.invalida",null,null);
-        String mensagemDev =ex.getCause().toString();
+        String mensagemUser = messageSource.getMessage("mensagem.invalida", null, null);
+        String mensagemDev = ex.getCause().toString();
 
-        return handleExceptionInternal(ex,new MensagemErro(mensagemUser,mensagemDev),headers,HttpStatus.BAD_REQUEST,request);
+        return handleExceptionInternal(ex, new MensagemErro(mensagemUser, mensagemDev), headers, HttpStatus.BAD_REQUEST, request);
     }
 
     @Getter
     @Setter
     @AllArgsConstructor
     @NoArgsConstructor
-    public static class MensagemErro{
+    public static class MensagemErro {
         private String mensagemDoUsuario;
         private String mensagemDoDesenvolvedor;
 
 
     }
-
-
-
-    //    @ExceptionHandler(HttpMessageNotReadableException.class)
-//    public ResponseEntity<String> exceptionHandlerCampoInvalido(HttpMessageNotReadableException exception, HttpServletRequest request){
-//        return new ResponseEntity<>("O valor inserido no campo, não é válido! Favor verificar o valor se está conforme requisito.", HttpStatus.BAD_REQUEST);
-//    }
 
 }

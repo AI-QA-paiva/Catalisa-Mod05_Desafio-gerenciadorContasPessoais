@@ -17,29 +17,29 @@ public class UsuarioController {
     private UsuarioService usuarioService;
 
     @PostMapping(path = "/usuario")
-    public ResponseEntity<UsuarioModel> cadastrarNovoUsuario(@Valid @RequestBody UsuarioModel cadastrando){
+    public ResponseEntity<UsuarioModel> cadastrarNovoUsuario(@Valid @RequestBody UsuarioModel cadastrando) {
         UsuarioModel novoUsuario = usuarioService.cadastrarUsuario(cadastrando);
         return new ResponseEntity<>(novoUsuario, HttpStatus.CREATED);
     }
 
     @GetMapping(path = "/usuario")
-    public ResponseEntity<List<UsuarioModel>> buscarOsUsuariosCadastrados(){
+    public ResponseEntity<List<UsuarioModel>> buscarOsUsuariosCadastrados() {
         return ResponseEntity.ok(usuarioService.buscarTodosOsUsuarios());
     }
 
     @GetMapping(path = "/usuario/{codigo}")
-    public ResponseEntity<Optional<UsuarioModel>> buscarUmUsuarioId(@PathVariable Long codigo){
+    public ResponseEntity<Optional<UsuarioModel>> buscarUmUsuarioId(@PathVariable Long codigo) {
         return ResponseEntity.ok(usuarioService.buscarUsuarioEspecifico(codigo));
     }
 
     @PutMapping(path = "/usuario/{codigo}")
-    public ResponseEntity<UsuarioModel> alterarUmUsuarioId(@RequestBody UsuarioModel alterandoUmUsuario, @PathVariable Long codigo){
+    public ResponseEntity<UsuarioModel> alterarUmUsuarioId(@RequestBody UsuarioModel alterandoUmUsuario, @PathVariable Long codigo) {
         alterandoUmUsuario.setCodigo(codigo);
         return ResponseEntity.ok(usuarioService.alterarUsuarioEspecifico(alterandoUmUsuario));
     }
 
     @DeleteMapping(path = "/usuario/{codigo}")
-    public ResponseEntity<Void> deletarUmUsuarioId(@PathVariable Long codigo){
+    public ResponseEntity<Void> deletarUmUsuarioId(@PathVariable Long codigo) {
         usuarioService.deletarUsuarioEspecifico(codigo);
         return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
     }

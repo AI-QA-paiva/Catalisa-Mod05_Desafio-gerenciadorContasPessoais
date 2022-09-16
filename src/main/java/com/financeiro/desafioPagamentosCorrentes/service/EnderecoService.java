@@ -13,23 +13,23 @@ public class EnderecoService {
     @Autowired
     private EnderecoRepository enderecoRepository;
 
-    public EnderecoModel cadastrarEndereco(EnderecoModel enderecoModel){
+    public EnderecoModel cadastrarEndereco(EnderecoModel enderecoModel) {
         return enderecoRepository.save(enderecoModel);
     }
 
-    public List<EnderecoModel> buscarTodosOsEnderecos(){
+    public List<EnderecoModel> buscarTodosOsEnderecos() {
         return enderecoRepository.findAll();
     }
 
-    public Optional<EnderecoModel> buscarEnderecoEspecifico(Long codigo){
+    public Optional<EnderecoModel> buscarEnderecoEspecifico(Long codigo) {
         return enderecoRepository.findById(codigo);
     }
 
-    public EnderecoModel alterarEnderecoEspecifico(EnderecoModel alterandoEndereco){
+    public EnderecoModel alterarEnderecoEspecifico(EnderecoModel alterandoEndereco) {
         return enderecoRepository.save(alterandoEndereco);
     }
 
-    public void deletarEnderecoEspecifico(Long codigo){
+    public void deletarEnderecoEspecifico(Long codigo) {
         enderecoRepository.deleteById(codigo);
     }
 

@@ -12,6 +12,7 @@ import java.util.List;
 public interface ContasAPagarRepository extends JpaRepository<ContasAPagarModel, Long> {
 
     List<ContasAPagarModel> findByStatus(Status status);
+
     List<ContasAPagarModel> findByTipo(Tipo tipo);
 
 }

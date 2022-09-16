@@ -13,23 +13,23 @@ public class CidadeService {
     @Autowired
     private CidadeRepository cidadeRepository;
 
-    public CidadeModel cadastrarCidade(CidadeModel cidade){
+    public CidadeModel cadastrarCidade(CidadeModel cidade) {
         return cidadeRepository.save(cidade);
     }
 
-    public List<CidadeModel> buscarTodasAsCidades(){
+    public List<CidadeModel> buscarTodasAsCidades() {
         return cidadeRepository.findAll();
     }
 
-    public Optional<CidadeModel> buscarCidadeEspecifica(Long codigo){
+    public Optional<CidadeModel> buscarCidadeEspecifica(Long codigo) {
         return cidadeRepository.findById(codigo);
     }
 
-    public CidadeModel alterarCidadeEspecifica(CidadeModel cidadePraAlterar){
+    public CidadeModel alterarCidadeEspecifica(CidadeModel cidadePraAlterar) {
         return cidadeRepository.save(cidadePraAlterar);
     }
 
-    public void deletarCidade(Long codigo){
+    public void deletarCidade(Long codigo) {
         cidadeRepository.deleteById(codigo);
     }
 

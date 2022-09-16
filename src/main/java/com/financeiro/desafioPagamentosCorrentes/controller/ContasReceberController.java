@@ -17,29 +17,29 @@ public class ContasReceberController {
     private ContasReceberService contasReceberService;
 
     @PostMapping(path = "/recebimento")
-    public ResponseEntity<ContaReceberModel> cadastrarNovoRecebimento(@Valid @RequestBody ContaReceberModel cadastrandoRecebimento){
+    public ResponseEntity<ContaReceberModel> cadastrarNovoRecebimento(@Valid @RequestBody ContaReceberModel cadastrandoRecebimento) {
         ContaReceberModel novoRecebimento = contasReceberService.cadastrarRecebimento(cadastrandoRecebimento);
         return new ResponseEntity<>(novoRecebimento, HttpStatus.CREATED);
     }
 
     @GetMapping(path = "/recebimento")
-    public ResponseEntity<List<ContaReceberModel>> buscarOsValoresRecebidos(){
+    public ResponseEntity<List<ContaReceberModel>> buscarOsValoresRecebidos() {
         return ResponseEntity.ok(contasReceberService.buscarTodosOsRecebimentos());
     }
 
     @GetMapping(path = "/recebimento/{codigo}")
-    public ResponseEntity<Optional<ContaReceberModel>> buscarUmRecebimentoEspecifico(@PathVariable Long codigo){
+    public ResponseEntity<Optional<ContaReceberModel>> buscarUmRecebimentoEspecifico(@PathVariable Long codigo) {
         return ResponseEntity.ok(contasReceberService.buscarRecebimentoEspecifico(codigo));
     }
 
     @PutMapping(path = "/recebimento/{codigo}")
-    public ResponseEntity<ContaReceberModel> alterarUmRecebimentoId(@RequestBody ContaReceberModel alteraRecebimento, @PathVariable Long codigo){
+    public ResponseEntity<ContaReceberModel> alterarUmRecebimentoId(@RequestBody ContaReceberModel alteraRecebimento, @PathVariable Long codigo) {
         alteraRecebimento.setCodigo(codigo);
         return ResponseEntity.ok(contasReceberService.alterarRecimentoEspecifico(alteraRecebimento));
     }
 
     @DeleteMapping(path = "/recebimento/{codigo}")
-    public ResponseEntity<Void> deletarRecebimentoId(@PathVariable Long codigo){
+    public ResponseEntity<Void> deletarRecebimentoId(@PathVariable Long codigo) {
         contasReceberService.deletarRecebimentoEspecifico(codigo);
         return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
     }

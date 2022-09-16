@@ -27,7 +27,7 @@ public class ContasAPagarModel {
     @Column(length = 10, nullable = false)
     private Double valor;
 
-    @Column(name ="Perfil_da_despesa")
+    @Column(name = "Perfil_da_despesa")
     @Enumerated(EnumType.STRING)
     private Tipo tipo;
 
@@ -37,7 +37,7 @@ public class ContasAPagarModel {
     @Column(length = 15)
     private LocalDateTime dataDePagamento;
 
-    @Column(name ="Situação")
+    @Column(name = "Situação")
     @Enumerated(EnumType.STRING)
     private Status status;
 

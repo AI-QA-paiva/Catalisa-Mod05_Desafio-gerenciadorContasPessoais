@@ -17,29 +17,29 @@ public class CidadeController {
     private CidadeService cidadeService;
 
     @PostMapping(path = "/cidade")
-    public ResponseEntity<CidadeModel> cadastrarCidade(@Valid @RequestBody CidadeModel cadastrandoCidade){
+    public ResponseEntity<CidadeModel> cadastrarCidade(@Valid @RequestBody CidadeModel cadastrandoCidade) {
         CidadeModel cidadeNova = cidadeService.cadastrarCidade(cadastrandoCidade);
         return new ResponseEntity<>(cidadeNova, HttpStatus.CREATED);
     }
 
     @GetMapping(path = "/cidade")
-    public ResponseEntity<List<CidadeModel>> buscarAsCidadesCadastradas(){
+    public ResponseEntity<List<CidadeModel>> buscarAsCidadesCadastradas() {
         return ResponseEntity.ok(cidadeService.buscarTodasAsCidades());
     }
 
     @GetMapping(path = "/cidade/{codigo}")
-    public ResponseEntity<Optional<CidadeModel>> buscarUmaCidadeEspecifica(@PathVariable Long codigo){
+    public ResponseEntity<Optional<CidadeModel>> buscarUmaCidadeEspecifica(@PathVariable Long codigo) {
         return ResponseEntity.ok(cidadeService.buscarCidadeEspecifica(codigo));
     }
 
     @PutMapping(path = "/cidade/{codigo}")
-    public ResponseEntity<CidadeModel> alterandoUmaCidadeEspecifica(@RequestBody CidadeModel alterandoACidade, @PathVariable Long codigo){
+    public ResponseEntity<CidadeModel> alterandoUmaCidadeEspecifica(@RequestBody CidadeModel alterandoACidade, @PathVariable Long codigo) {
         alterandoACidade.setCodigo(codigo); //revisar esse item
         return ResponseEntity.ok(cidadeService.alterarCidadeEspecifica(alterandoACidade));
     }
 
     @DeleteMapping(path = "/cidade/{codigo}")
-    public ResponseEntity<Void> deletarCidadeIndicada(@PathVariable Long codigo){
+    public ResponseEntity<Void> deletarCidadeIndicada(@PathVariable Long codigo) {
         cidadeService.deletarCidade(codigo);
         return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
     }

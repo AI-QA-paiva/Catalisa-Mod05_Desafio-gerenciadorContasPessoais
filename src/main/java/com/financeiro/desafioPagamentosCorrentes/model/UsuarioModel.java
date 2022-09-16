@@ -50,7 +50,7 @@ public class UsuarioModel {
 
     //relação um usuario tem varios endereços
     @JsonIgnore
-    @OneToMany(mappedBy = "usuario_id",cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "usuario_id", cascade = CascadeType.ALL)
     private List<EnderecoModel> litaDeEndereco = new ArrayList<>();
 
 }

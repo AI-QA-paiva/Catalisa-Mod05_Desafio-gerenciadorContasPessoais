@@ -17,52 +17,51 @@ public class ContasAPagarService {
     @Autowired
     private ContasAPagarRepository contasAPagarRepository;
 
-    public List<ContasAPagarModel> buscarAsContas(){
+    public List<ContasAPagarModel> buscarAsContas() {
         return contasAPagarRepository.findAll();
     }
 
-    public Optional<ContasAPagarModel> buscarContaExata(Long idConta){
+    public Optional<ContasAPagarModel> buscarContaExata(Long idConta) {
         return contasAPagarRepository.findById(idConta);
     }
 
-    public List<ContasAPagarModel> buscarContasPorStatus(Status status){
+    public List<ContasAPagarModel> buscarContasPorStatus(Status status) {
         return contasAPagarRepository.findByStatus(status);
     }
 
-    public List<ContasAPagarModel> buscarContasPorTipo(Tipo tipo){
+    public List<ContasAPagarModel> buscarContasPorTipo(Tipo tipo) {
         return contasAPagarRepository.findByTipo(tipo);
     }
 
-    public ContasAPagarModel cadastrarContas(ContasAPagarModel contasAPagarModel){
+    public ContasAPagarModel cadastrarContas(ContasAPagarModel contasAPagarModel) {
         Boolean dataDeHoje = LocalDate.now().isAfter(contasAPagarModel.getDataDeVencimento());
 
-        if(Boolean.FALSE.equals(dataDeHoje)){
+        if (Boolean.FALSE.equals(dataDeHoje)) {
             contasAPagarModel.setStatus(Status.AGUARDANDO);
-        }else{
+        } else {
             contasAPagarModel.setStatus(Status.VENCIDA);
         }
         return contasAPagarRepository.save(contasAPagarModel);
     }
 
-    public ContasAPagarModel alteracaoConta(ContasAPagarModel contasAPagarModel){
+    public ContasAPagarModel alteracaoConta(ContasAPagarModel contasAPagarModel) {
 
         ContasAPagarModel contasAPagarModelEncontrado = contasAPagarRepository.findById(contasAPagarModel.getIdConta()).orElse(null);
-        if(contasAPagarModelEncontrado==null){
+        if (contasAPagarModelEncontrado == null) {
             return null;
         }
 
         contasAPagarModelEncontrado.setStatus(contasAPagarModel.getStatus());
 
-        if(contasAPagarModelEncontrado.getStatus().equals(Status.PAGO)){
+        if (contasAPagarModelEncontrado.getStatus().equals(Status.PAGO)) {
             contasAPagarModelEncontrado.setDataDePagamento(LocalDateTime.now());
         }
         return contasAPagarRepository.save(contasAPagarModelEncontrado);
     }
 
-    public void deletarConta(Long idConta){
+    public void deletarConta(Long idConta) {
         contasAPagarRepository.deleteById(idConta);
     }
-
 
 
 }

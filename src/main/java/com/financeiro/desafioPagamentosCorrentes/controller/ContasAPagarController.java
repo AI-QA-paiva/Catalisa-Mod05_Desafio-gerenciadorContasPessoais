@@ -19,41 +19,41 @@ public class ContasAPagarController {
     private ContasAPagarService contasAPagarService;
 
     @GetMapping(path = "/contas")
-    public ResponseEntity<List<ContasAPagarModel>> buscarTodasAsContas(){
+    public ResponseEntity<List<ContasAPagarModel>> buscarTodasAsContas() {
         return ResponseEntity.ok(contasAPagarService.buscarAsContas());
     }
 
     @GetMapping(path = "/contas/{id}")
-    public ResponseEntity<Optional<ContasAPagarModel>> buscarContaEspecifica(@PathVariable Long id){
+    public ResponseEntity<Optional<ContasAPagarModel>> buscarContaEspecifica(@PathVariable Long id) {
         return ResponseEntity.ok(contasAPagarService.buscarContaExata(id));
     }
 
     @GetMapping(path = "/contas/status/{status}")
-    public ResponseEntity<List<ContasAPagarModel>> buscarTodasAsContasPorStatus(@PathVariable Status status){
+    public ResponseEntity<List<ContasAPagarModel>> buscarTodasAsContasPorStatus(@PathVariable Status status) {
         return ResponseEntity.ok(contasAPagarService.buscarContasPorStatus(status));
     }
 
     @GetMapping(path = "/contas/tipo/{tipo}")
-    public ResponseEntity<List<ContasAPagarModel>> buscarTodasAsContasPorTipo(@PathVariable Tipo tipo){
+    public ResponseEntity<List<ContasAPagarModel>> buscarTodasAsContasPorTipo(@PathVariable Tipo tipo) {
         return ResponseEntity.ok(contasAPagarService.buscarContasPorTipo(tipo));
     }
 
     @PostMapping(path = "/contas")
-    public ResponseEntity<ContasAPagarModel> cadastrarConta(@Valid @RequestBody ContasAPagarModel cadastrando){
+    public ResponseEntity<ContasAPagarModel> cadastrarConta(@Valid @RequestBody ContasAPagarModel cadastrando) {
         ContasAPagarModel conta = contasAPagarService.cadastrarContas(cadastrando);
         return new ResponseEntity<>(conta, HttpStatus.CREATED);
     }
 
-   @PutMapping(path = "contas/{idConta}")
-   public ResponseEntity <ContasAPagarModel> alterarConta(@RequestBody ContasAPagarModel alterando,@PathVariable Long idConta){
+    @PutMapping(path = "contas/{idConta}")
+    public ResponseEntity<ContasAPagarModel> alterarConta(@RequestBody ContasAPagarModel alterando, @PathVariable Long idConta) {
         alterando.setIdConta(idConta);
         return ResponseEntity.ok(contasAPagarService.alteracaoConta(alterando));
-   }
+    }
 
     @DeleteMapping(path = "/contas/{idConta}")
-    public ResponseEntity<Void> deletarConta(@PathVariable Long idConta){
+    public ResponseEntity<Void> deletarConta(@PathVariable Long idConta) {
         contasAPagarService.deletarConta(idConta);
-    return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
+        return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
 
         //contasAPagarService.deletarConta(idConta);
     }

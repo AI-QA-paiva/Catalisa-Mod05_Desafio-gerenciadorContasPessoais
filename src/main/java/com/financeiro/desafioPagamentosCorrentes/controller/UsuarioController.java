@@ -1,5 +1,6 @@
 package com.financeiro.desafioPagamentosCorrentes.controller;
 
+import com.financeiro.desafioPagamentosCorrentes.dto.UsuarioDto;
 import com.financeiro.desafioPagamentosCorrentes.model.UsuarioModel;
 import com.financeiro.desafioPagamentosCorrentes.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +29,7 @@ public class UsuarioController {
     }
 
     @GetMapping(path = "/usuario/{codigo}")
-    public ResponseEntity<Optional<UsuarioModel>> buscarUmUsuarioId(@PathVariable Long codigo) {
+    public ResponseEntity<Optional<UsuarioDto>> buscarUmUsuarioId(@PathVariable Long codigo) {
         return ResponseEntity.ok(usuarioService.buscarUsuarioEspecifico(codigo));
     }
 

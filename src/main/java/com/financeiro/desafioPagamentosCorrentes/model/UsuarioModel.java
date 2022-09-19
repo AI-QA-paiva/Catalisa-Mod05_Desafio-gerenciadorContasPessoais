@@ -24,8 +24,9 @@ public class UsuarioModel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long codigo;
 
-    @NotBlank
-    @NotEmpty(message = "O campo Nome Usuario não pode ser vazio")
+    //@NotBlank
+    //@NotEmpty(message = "O campo Nome Usuario não pode ser vazio")
+    @Column(nullable = false)
     private String nomeUsuario;
 
     @Column(nullable = false)
@@ -33,13 +34,13 @@ public class UsuarioModel {
     private LocalDate dataNascimento;
 
     @Column(nullable = false)
-    @NotEmpty(message = "Este campo não pode ficar vazio")
-    @Email
+    //@NotEmpty(message = "Este campo não pode ficar vazio")
+    //@Email
     private String email;
 
     @Column(nullable = false)
-    @NotEmpty(message = "Este campo não pode ficar vazio")
-    @CPF
+    //@NotEmpty(message = "Este campo não pode ficar vazio")
+    //@CPF
     //@Size(min = 11, max = 11, message = "O total de caracteres é de no máximo 11 caracteres")
     private String cpf;
 

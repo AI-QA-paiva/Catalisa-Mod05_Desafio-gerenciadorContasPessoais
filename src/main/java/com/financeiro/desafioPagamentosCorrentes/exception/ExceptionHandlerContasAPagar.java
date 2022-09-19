@@ -7,6 +7,8 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
+import org.springframework.validation.FieldError;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
@@ -27,6 +29,16 @@ public class ExceptionHandlerContasAPagar extends ResponseEntityExceptionHandler
         return handleExceptionInternal(ex, new MensagemErro(mensagemUser, mensagemDev), headers, HttpStatus.BAD_REQUEST, request);
     }
 
+
+//    @Override
+//    protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
+//        String mensagem = "";
+//        for (FieldError campo: ex.getFieldErrors()) {
+//            mensagem = mensagem + campo.getField() + ": " + campo.getDefaultMessage() + "\n";
+//        }
+//        return handleExceptionInternal(ex, new MensagensErroDTO(mensagem), headers, HttpStatus.BAD_REQUEST, request);
+//    }
+
     @Getter
     @Setter
     @AllArgsConstructor
@@ -34,7 +46,6 @@ public class ExceptionHandlerContasAPagar extends ResponseEntityExceptionHandler
     public static class MensagemErro {
         private String mensagemDoUsuario;
         private String mensagemDoDesenvolvedor;
-
 
     }
 

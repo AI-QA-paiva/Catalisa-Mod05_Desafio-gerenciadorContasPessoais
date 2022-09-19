@@ -1,5 +1,6 @@
 package com.financeiro.desafioPagamentosCorrentes.service;
 
+import com.financeiro.desafioPagamentosCorrentes.dto.UsuarioDto;
 import com.financeiro.desafioPagamentosCorrentes.model.UsuarioModel;
 import com.financeiro.desafioPagamentosCorrentes.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,11 +19,17 @@ public class UsuarioService {
     }
 
     public List<UsuarioModel> buscarTodosOsUsuarios() {
+
         return usuarioRepository.findAll();
     }
 
-    public Optional<UsuarioModel> buscarUsuarioEspecifico(Long codigo) {
-        return usuarioRepository.findById(codigo);
+    public Optional<UsuarioDto> buscarUsuarioEspecifico(Long codigo) {
+        //return usuarioRepository.findById(codigo);
+
+        UsuarioModel userEntity = usuarioRepository.findById(codigo).get();
+            UsuarioDto objDto = new UsuarioDto(userEntity);
+            return Optional.of(objDto);
+
     }
 
     public UsuarioModel alterarUsuarioEspecifico(UsuarioModel alterandoUsuario) {
